@@ -6,25 +6,17 @@ import java.util.List;
 
 public class Task extends BaseEntity {
 
-    private List<User> users;
     private TaskStatus taskStatus;
     private String title;
+    private List<Item> items;
 
     public Task() {
     }
 
-    public Task(List<User> users, TaskStatus taskStatus, String title) {
-        this.users = users;
+    public Task(TaskStatus taskStatus, String title, List<Item> items) {
         this.taskStatus = taskStatus;
         this.title = title;
-    }
-
-    public List<User> getUsers() {
-        return users;
-    }
-
-    public void setUsers(List<User> users) {
-        this.users = users;
+        this.items = items;
     }
 
     public TaskStatus getTaskStatus() {
@@ -41,5 +33,13 @@ public class Task extends BaseEntity {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public List<Item> getItems() {
+        return items;
+    }
+
+    public void setItems(List<Item> items) {
+        this.items = items;
     }
 }
