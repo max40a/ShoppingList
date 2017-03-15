@@ -21,11 +21,11 @@ public class Task extends BaseEntity {
         this.userId = userId;
     }
 
-    public TaskStatus getTaskStatus() {
+    public TaskStatus getStatus() {
         return taskStatus;
     }
 
-    public void setTaskStatus(TaskStatus taskStatus) {
+    public void setStatus(TaskStatus taskStatus) {
         this.taskStatus = taskStatus;
     }
 
