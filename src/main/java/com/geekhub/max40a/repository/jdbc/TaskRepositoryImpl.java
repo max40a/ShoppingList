@@ -71,7 +71,6 @@ public class TaskRepositoryImpl implements TaskRepository {
 
     @Override
     public void deleteTask(Integer taskId) {
-        System.out.println("Repository task id = " + taskId);
         String sql = "DELETE FROM tasks WHERE id = ?";
         jdbcTemplate.update(sql, taskId);
     }

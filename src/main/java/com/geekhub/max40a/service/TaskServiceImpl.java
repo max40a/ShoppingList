@@ -35,7 +35,6 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public void deleteTask(Integer taskId) {
-        System.out.println("Service task id = " + taskId);
         taskRepository.deleteTask(taskId);
     }
 }

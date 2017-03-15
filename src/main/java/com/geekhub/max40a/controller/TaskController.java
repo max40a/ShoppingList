@@ -45,7 +45,6 @@ public class TaskController {
     @DeleteMapping(value = "/{taskId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deletaTaskById(@PathVariable Integer taskId) {
-        System.out.println("Controller taskId = " + taskId);
         taskService.deleteTask(taskId);
     }
 }
