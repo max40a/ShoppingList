@@ -18,7 +18,7 @@ public class UserRepositoryImp implements UserRepository {
 
     @Autowired
     public UserRepositoryImp(DataSource dataSource) {
-        jdbcTemplate = new JdbcTemplate(dataSource);
+        this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
     @Override
