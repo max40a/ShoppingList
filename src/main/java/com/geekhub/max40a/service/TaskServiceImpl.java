@@ -2,6 +2,7 @@ package com.geekhub.max40a.service;
 
 import com.geekhub.max40a.model.Item;
 import com.geekhub.max40a.model.Task;
+import com.geekhub.max40a.model.enums.TaskStatus;
 import com.geekhub.max40a.repository.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,5 +37,10 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public void deleteTask(Integer taskId) {
         taskRepository.deleteTask(taskId);
+    }
+
+    @Override
+    public void changeStatusOfTask(Integer taskId, TaskStatus status) {
+        taskRepository.changeStatusOfTask(taskId, status);
     }
 }

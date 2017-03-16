@@ -74,4 +74,10 @@ public class TaskRepositoryImpl implements TaskRepository {
         String sql = "DELETE FROM tasks WHERE id = ?";
         jdbcTemplate.update(sql, taskId);
     }
+
+    @Override
+    public void changeStatusOfTask(Integer taskId, TaskStatus status) {
+        String sql = "UPDATE tasks SET status = ? WHERE id = ?";
+        jdbcTemplate.update(sql, status.getStatusToString().toUpperCase(), taskId);
+    }
 }

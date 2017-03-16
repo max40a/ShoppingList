@@ -47,4 +47,10 @@ public class TaskController {
     public void deletaTaskById(@PathVariable Integer taskId) {
         taskService.deleteTask(taskId);
     }
+
+    @PutMapping(value = "/{taskId}")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void changeTaskStatus(@PathVariable Integer taskId, String status) {
+        taskService.changeStatusOfTask(taskId, TaskStatus.valueOf(status));
+    }
 }
