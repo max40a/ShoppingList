@@ -1,7 +1,8 @@
-package com.geekhub.max40a.service;
+package com.geekhub.max40a.services.impls;
 
 import com.geekhub.max40a.model.User;
 import com.geekhub.max40a.repository.UserRepository;
+import com.geekhub.max40a.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

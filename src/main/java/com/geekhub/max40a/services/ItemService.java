@@ -1,4 +1,4 @@
-package com.geekhub.max40a.service;
+package com.geekhub.max40a.services;
 
 import com.geekhub.max40a.model.Item;
 

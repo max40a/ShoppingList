@@ -1,7 +1,7 @@
 package com.geekhub.max40a.controller;
 
 import com.geekhub.max40a.model.User;
-import com.geekhub.max40a.service.UserService;
+import com.geekhub.max40a.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;

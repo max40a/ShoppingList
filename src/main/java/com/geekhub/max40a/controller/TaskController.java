@@ -3,7 +3,7 @@ package com.geekhub.max40a.controller;
 import com.geekhub.max40a.model.Item;
 import com.geekhub.max40a.model.Task;
 import com.geekhub.max40a.model.enums.TaskStatus;
-import com.geekhub.max40a.service.TaskService;
+import com.geekhub.max40a.services.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
