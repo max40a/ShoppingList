@@ -41,6 +41,10 @@ public class TaskRepositoryImpl implements TaskRepository {
             tasks.add(task);
         }
 
+        for (Task task : tasks) {
+            task.setItems(getItemByTask(task.getId()));
+        }
+
         return tasks;
     }
 
