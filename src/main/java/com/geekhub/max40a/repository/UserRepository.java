@@ -12,7 +12,5 @@ public interface UserRepository {
 
     void delete(Integer id);
 
-    void addUser(User user);
-
-    void updateUser(User user);
+    void saveOrUpdateUser(User user);
 }

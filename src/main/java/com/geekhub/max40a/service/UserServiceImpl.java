@@ -29,7 +29,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void addUser(User user) {
-        userRepository.addUser(user);
+        userRepository.saveOrUpdateUser(user);
     }
 
     @Override
@@ -39,6 +39,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void updateUser(User user) {
-        userRepository.updateUser(user);
+        userRepository.saveOrUpdateUser(user);
     }
 }

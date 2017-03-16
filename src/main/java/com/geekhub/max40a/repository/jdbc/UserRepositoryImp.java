@@ -64,18 +64,13 @@ public class UserRepositoryImp implements UserRepository {
     }
 
     @Override
-    public void addUser(User user) {
-        String sql = "INSERT INTO users VALUES(DEFAULT, ?, ?, ?);";
-        jdbcTemplate.update(sql, user.getName(), user.getEmail(), user.getPassword());
-    }
-
-    @Override
-    public void updateUser(User user) {
-        if (!user.isNew()) {
+    public void saveOrUpdateUser(User user) {
+        if(user.isNew()) {
+            String sql = "INSERT INTO users VALUES(DEFAULT, ?, ?, ?);";
+            jdbcTemplate.update(sql, user.getName(), user.getEmail(), user.getPassword());
+        } else {
             String sql = "UPDATE users SET name = ?, email = ?, password = ? WHERE id = " + user.getId();
             jdbcTemplate.update(sql, user.getName(), user.getEmail(), user.getPassword());
-        }else {
-            addUser(user);
         }
     }
 }
