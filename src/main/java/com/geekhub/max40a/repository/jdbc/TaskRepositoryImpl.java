@@ -60,6 +60,7 @@ public class TaskRepositoryImpl implements TaskRepository {
             item.setId((Integer) row.get("id"));
             item.setDescription((String) row.get("description"));
             item.setStatus(ItemStatus.valueOf((String) row.get("status")));
+            item.setTaskId((Integer) row.get("task_id"));
 
             items.add(item);
         }

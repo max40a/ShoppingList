@@ -6,13 +6,15 @@ public class Item extends BaseEntity {
 
     private String description;
     private ItemStatus status;
+    private Integer taskId;
 
     public Item() {
     }
 
-    public Item(String description, ItemStatus status) {
+    public Item(String description, ItemStatus status, Integer taskId) {
         this.description = description;
         this.status = status;
+        this.taskId = taskId;
     }
 
     public String getDescription() {
@@ -29,5 +31,13 @@ public class Item extends BaseEntity {
 
     public void setStatus(ItemStatus status) {
         this.status = status;
+    }
+
+    public Integer getTaskId() {
+        return taskId;
+    }
+
+    public void setTaskId(Integer taskId) {
+        this.taskId = taskId;
     }
 }
