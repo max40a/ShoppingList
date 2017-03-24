@@ -33,10 +33,10 @@ public class TaskController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void addTask(String title, String status, Integer userId) {
+    public void addTask(String title, Integer userId) {
         Task task = new Task();
         task.setTitle(title);
-        task.setStatus(TaskStatus.valueOf(status));
+        task.setStatus(TaskStatus.INCOMPLETE);
         task.setUserId(userId);
 
         taskService.createTask(task);

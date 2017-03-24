@@ -20,10 +20,10 @@ public class ItemController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void addItemInTask(Integer taskId, String description, String status) {
+    public void addItemInTask(Integer taskId, String description) {
         Item item = new Item();
         item.setDescription(description);
-        item.setStatus(ItemStatus.valueOf(status));
+        item.setStatus(ItemStatus.UNREADY);
 
         itemService.addItemInTask(item, taskId);
     }
