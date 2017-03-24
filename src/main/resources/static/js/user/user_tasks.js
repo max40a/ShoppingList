@@ -102,6 +102,11 @@ function showTaskItems(task) {
                     })
                 )
             ); // end $("#items").append(
+
+            $('#deleteItem' + item.id).on('click', function () {
+               deleteItem(item.id);
+            })
+
         }); //end each
 
         $("#items").append(
@@ -123,4 +128,11 @@ function showTaskItems(task) {
         })
 
     }); //end $.get function
+}
+
+function deleteItem(itemId) {
+    $.ajax({
+       type: 'DELETE',
+        url: '/host/tasks/items/' + itemId
+    });
 }
