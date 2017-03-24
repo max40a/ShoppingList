@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS `users`(
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
   `email` varchar(255) NOT NULL,
-  `password` varchar(20) NOT NULL,
+  `password` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_email_uindex` (`email`),
   UNIQUE KEY `users_password_uindex` (`password`)
