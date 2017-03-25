@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS `tasks` (
   ENGINE = InnoDB
   DEFAULT CHARSET = latin1;
 
-CREATE TABLE `items` (
+CREATE TABLE IF NOT EXISTS `items` (
   `id`          INT(11) NOT NULL          AUTO_INCREMENT,
   `task_id`     INT(11) NOT NULL,
   `description` TINYTEXT,
