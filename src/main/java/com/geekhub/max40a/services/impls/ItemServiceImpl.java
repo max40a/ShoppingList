@@ -25,4 +25,9 @@ public class ItemServiceImpl implements ItemService {
     public void deleteItemInTask(Integer itemId) {
         itemRepository.deleteItemInTask(itemId);
     }
+
+    @Override
+    public void changeItemStatus(Integer itemId) {
+        itemRepository.changeItemStatus(itemId);
+    }
 }

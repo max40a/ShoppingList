@@ -8,4 +8,5 @@ public interface ItemService {
 
     void deleteItemInTask(Integer itemId);
 
+    void changeItemStatus(Integer itemId);
 }
