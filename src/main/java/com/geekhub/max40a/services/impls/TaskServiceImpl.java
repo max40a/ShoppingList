@@ -41,7 +41,7 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public void changeStatusOfTask(Integer taskId, TaskStatus status) {
+    public void changeStatusOfTask(Integer taskId, String status) {
         String changeableStatus = "";
         if (status.equals("INCOMPLETE")) {
             changeableStatus = "COMPLETE";
