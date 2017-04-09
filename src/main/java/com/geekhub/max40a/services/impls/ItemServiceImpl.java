@@ -1,6 +1,7 @@
 package com.geekhub.max40a.services.impls;
 
 import com.geekhub.max40a.model.Item;
+import com.geekhub.max40a.model.enums.ItemStatus;
 import com.geekhub.max40a.repository.ItemRepository;
 import com.geekhub.max40a.services.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +28,14 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    public void changeItemStatus(Integer itemId) {
-        itemRepository.changeItemStatus(itemId);
+    public void changeItemStatus(Integer itemId, String status) {
+        String changeableStatus = "";
+        if (status.equals("UNREADY")) {
+            changeableStatus = "READY";
+        } else if (status.equals("READY")) {
+            changeableStatus = "UNREADY";
+        }
+
+        itemRepository.changeItemStatus(itemId, ItemStatus.valueOf(changeableStatus));
     }
 }

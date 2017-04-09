@@ -1,6 +1,7 @@
 package com.geekhub.max40a.repository.jdbc;
 
 import com.geekhub.max40a.model.Item;
+import com.geekhub.max40a.model.enums.ItemStatus;
 import com.geekhub.max40a.repository.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -28,5 +29,11 @@ public class ItemRepositoryImpl implements ItemRepository {
     public void deleteItemInTask(Integer itemId) {
         String sql = "DELETE FROM items WHERE id = ?";
         jdbcTemplate.update(sql, itemId);
+    }
+
+    @Override
+    public void changeItemStatus(Integer itemId, ItemStatus status) {
+        String sql = "UPDATE items SET status = ? WHERE id = ?";
+        jdbcTemplate.update(sql, status.getStatusToString().toUpperCase(), itemId);
     }
 }

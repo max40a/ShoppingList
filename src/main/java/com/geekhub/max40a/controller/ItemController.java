@@ -36,7 +36,7 @@ public class ItemController {
 
     @PutMapping(value = "/{itemId}")
     @ResponseStatus(HttpStatus.CREATED)
-    public void changeItemStatus(@PathVariable Integer itemId) {
-        itemService.changeItemStatus(itemId);
+    public void changeItemStatus(@PathVariable Integer itemId, String status) {
+        itemService.changeItemStatus(itemId, status);
     }
 }
