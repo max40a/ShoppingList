@@ -1,8 +1,8 @@
 package com.geekhub.max40a.model.enums;
 
 public enum  ItemStatus {
-    READY("Ready"),
-    UNREADY("Unready");
+    READY("READY"),
+    UNREADY("UNREADY");
 
     private String status;
 
