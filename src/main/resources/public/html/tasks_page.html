@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Project Page</title>
+    <link rel='stylesheet' href='../../webjars/bootstrap/3.2.0/css/bootstrap.min.css'/>
+    <link rel="stylesheet" href="../css/main.css">
+    <script src="../../webjars/jquery/3.1.1/jquery.min.js"></script>
+    <script src="../js/tasks_page.js"></script>
+</head>
+<body>
+<div class="wrapper">
+    <header>
+        <h2>Users Tasks</h2>
+    </header>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2" id="menu" align="center">
+                <h2>Main Menu</h2>
+                <hr>
+                <div class="btn-group-vertical">
+                    <button class="btn btn-default">Create new task</button>
+                    <button class="btn btn-default">Show my Statistics</button>
+                    <button class="btn btn-default">Get PDF document</button>
+                </div>
+            </div>
+            <div id="tables">
+                <div class="col-md-5" id="task_table">
+                    <table class="table" id="tasksList">
+                        <tbody id="tasks"></tbody>
+                    </table>
+                </div>
+                <div class="col-md-5" align="center">
+                    <table class="table" id="itemsList">
+                        <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Status</th>
+                            <th colspan="2">Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody id="items"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer>
+    <p>Footer</p>
+</footer>
+<script>
+    $(document).ready(function () {
+        $('#itemsList').hide();
+        getAllTasks();
+    });
+</script>
+</body>
+</html>
