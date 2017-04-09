@@ -33,4 +33,10 @@ public class ItemController {
     public void deleteItem(@PathVariable Integer itemId) {
         itemService.deleteItemInTask(itemId);
     }
+
+    @PutMapping(value = "/{itemId}")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void changeItemStatus(@PathVariable Integer itemId) {
+        itemService.changeItemStatus(itemId);
+    }
 }
