@@ -21,7 +21,7 @@ function getAllTasks() {
 
             $('#tasks').on('click', '#create_item_for_task_id_' + task.id, function () {
                 sessionStorage.setItem('taskId', task.id);
-                open('http://localhost:8090/tests/create_item.html',
+                open('http://localhost:8080/html/create_item.html',
                     'newItem',
                     'height=300, width=300, left=533, top=150');
             })
