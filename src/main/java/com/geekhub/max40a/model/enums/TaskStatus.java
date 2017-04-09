@@ -1,8 +1,8 @@
 package com.geekhub.max40a.model.enums;
 
 public enum TaskStatus {
-    INCOMPLETE("Incomplete"),
-    COMPLETE("Complete");
+    INCOMPLETE("INCOMPLETE"),
+    COMPLETE("COMPLETE");
 
     private String status;
 
