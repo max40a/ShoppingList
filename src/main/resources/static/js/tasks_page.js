@@ -33,10 +33,9 @@ function fillTaskTable(tasks) {
     $.each(tasks, function (index, task) {
         var countOfAllItemsInTask = task.items.length;
         var countOfUnfinishedItem = calculateUnfinishedItemsForTask(task);
-
-        var taskStatusLabelClass;
         var progress = calculatePercentageOfFillingProgressLine(countOfAllItemsInTask, countOfUnfinishedItem);
 
+        var taskStatusLabelClass;
         if (task.status == 'INCOMPLETE') {
             taskStatusLabelClass = 'label label-warning';
         } else if (task.status == 'COMPLETE') {
