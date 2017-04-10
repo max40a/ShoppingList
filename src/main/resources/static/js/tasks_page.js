@@ -31,15 +31,16 @@ function getAllTasks() {
 
 function fillTaskTable(tasks) {
     $.each(tasks, function (index, task) {
+        var countOfAllItemsInTask = task.items.length;
+        var countOfUnfinishedItem = calculateUnfinishedItemsForTask(task);
+
         var taskStatusLabelClass;
-        var taskProgress;
+        var progress = calculatePercentageOfFillingProgressLine(countOfAllItemsInTask, countOfUnfinishedItem);
 
         if (task.status == 'INCOMPLETE') {
             taskStatusLabelClass = 'label label-warning';
-            taskProgress = 0;
         } else if (task.status == 'COMPLETE') {
             taskStatusLabelClass = 'label label-success';
-            taskProgress = 100;
         }
 
         $('#tasks').append(
@@ -127,7 +128,7 @@ function fillTaskTable(tasks) {
                             ariaValuenow: '60',
                             ariaValuemin: '0',
                             ariaValuemax: '100',
-                            width: taskProgress + '%',
+                            width: progress + '%',
                             html: $('<span>', {
                                 class: 'sr-only'
                             })
@@ -173,8 +174,6 @@ function fillItemTable(items) {
     $.each(items, function (index, item) {
         var itemStatusLabelClass;
 
-        console.log(item.status);
-
         if (item.status == 'UNREADY') {
             itemStatusLabelClass = 'label label-warning';
         } else if (item.status == 'READY') {
@@ -219,10 +218,12 @@ function fillItemTable(items) {
 
         $('#delete_item_id_' + item.id).click(function () {
             deleteItem(item.id);
+            redrawTaskTable()
         });
 
         $('#change_item_status_' + item.id).click(function () {
             changeItemStatus(item.id, item.status);
+            redrawTaskTable();
         })
     });
 }
@@ -244,7 +245,7 @@ function deleteItem(itemId) {
         type: 'DELETE',
         url: '/host/tasks/items/' + itemId
     }).done(function () {
-        redrawItemsTable()
+        redrawItemsTable();
     });
 }
 
@@ -254,4 +255,25 @@ function redrawItemsTable() {
     $.get('/host/tasks/' + currentTaskId, function (items) {
         fillItemTable(items);
     });
+}
+
+function redrawTaskTable() {
+    $.get("/host/tasks/user/" + tempId, function (tasks) {
+        $('#tasks').empty();
+        fillTaskTable(tasks)
+    });
+}
+
+function calculateUnfinishedItemsForTask(task) {
+    var count = 0;
+    $.each(task.items, function (index, item) {
+        if (item.status == 'READY') {
+            ++count;
+        }
+    });
+    return count;
+}
+
+function calculatePercentageOfFillingProgressLine(allCount, completeCount) {
+    return ((completeCount / allCount) * 100).toFixed(2);
 }
