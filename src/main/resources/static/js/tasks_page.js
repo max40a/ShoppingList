@@ -94,17 +94,6 @@ function fillTaskTable(tasks) {
                 }),
                 $('<td>', {
                     html: $('<button>', {
-                        id: "change_status_for_task_" + task.id,
-                        class: 'btn btn-default btn-md',
-                        ariaLabel: 'Center Align',
-                        html: $('<span>', {
-                            class: 'glyphicon glyphicon-ok',
-                            ariaHidden: 'true'
-                        })
-                    })
-                }),
-                $('<td>', {
-                    html: $('<button>', {
                         id: 'create_item_for_task_id_' + task.id,
                         class: 'btn btn-default btn-md',
                         ariaLabel: 'Center Align',
@@ -138,13 +127,15 @@ function fillTaskTable(tasks) {
             )
         );
 
-        $('#change_status_for_task_' + task.id).click(function () {
-            changeTaskStatus(task.id, task.status);
-        })
+        if (progress == 100) {
+            changeTaskStatus(task.id, 'COMPLETE', 'label label-success');
+        } else if (progress != 100) {
+            changeTaskStatus(task.id, 'INCOMPLETE', 'label label-warning');
+        }
     });
 }
 
-function changeTaskStatus(taskId, taskStatus) {
+function changeTaskStatus(taskId, taskStatus, labelClass) {
     $.ajax({
         type: "PUT",
         url: '/host/tasks/' + taskId,
@@ -153,19 +144,9 @@ function changeTaskStatus(taskId, taskStatus) {
         }
     }).done(function () {
         var $label = $('#task_status_label_' + taskId);
-        var $progressForTask = $('#progress_for_task_' + taskId);
 
-        if ($label.text() == "INCOMPLETE") {
-            $label.attr('class', 'label label-success');
-            $label.text('COMPLETE');
-
-            $progressForTask.css('width', '100%');
-        } else if ($label.text() == "COMPLETE") {
-            $label.attr('class', 'label label-warning');
-            $label.text('INCOMPLETE');
-
-            $progressForTask.css('width', '0%');
-        }
+        $label.attr('class', labelClass);
+        $label.text(taskStatus);
     });
 }
 
