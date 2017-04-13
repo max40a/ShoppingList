@@ -2,6 +2,7 @@ INSERT INTO users VALUE (DEFAULT , 'user', 'user1@mail.com');
 
 INSERT INTO tasks VALUES (DEFAULT, 'Go to shopping', 1, DEFAULT);
 INSERT INTO tasks VALUES (DEFAULT, 'Gym', 1, DEFAULT);
+INSERT INTO tasks VALUES (DEFAULT, 'Walk to the movies', 1, DEFAULT);
 
 INSERT INTO items VALUES (DEFAULT, 1, 'buy bread', DEFAULT );
 INSERT INTO items VALUES (DEFAULT, 1, 'buy oil', DEFAULT );
@@ -10,3 +11,6 @@ INSERT INTO items VALUES (DEFAULT, 2, 'pull-ups', DEFAULT );
 INSERT INTO items VALUES (DEFAULT, 2, 'push ups', DEFAULT );
 INSERT INTO items VALUES (DEFAULT, 2, 'press', DEFAULT );
 INSERT INTO items VALUES (DEFAULT, 2, 'sit ups', DEFAULT );
+INSERT INTO items VALUES (DEFAULT, 3, 'buy ticket', DEFAULT );
+INSERT INTO items VALUES (DEFAULT, 3, 'buy pop corn', DEFAULT );
+INSERT INTO items VALUES (DEFAULT, 3, 'buy coca-cola', DEFAULT );
