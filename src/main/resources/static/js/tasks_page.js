@@ -132,6 +132,48 @@ function fillTaskTable(tasks) {
             changeTaskStatus(task.id, 'INCOMPLETE', 'label label-warning');
         }
     });
+
+    var countTasks = 6;
+
+    $('#tasks').append(
+        $('<tr>').append(
+            $('<td>', {
+                colspan: '5',
+                html: generatePaginationLine(countTasks)
+            })
+        )
+    )
+}
+
+function generatePaginationLine(countTask) {
+    var paginationList = $('<ul>', {
+        class: 'pagination'
+    });
+
+    $('<li>', {
+        html: $('<a>', {
+            href: '#',
+            text: 'next'
+        })
+    }).appendTo(paginationList);
+
+    for (var i = 1; i <= countTask; i++) {
+        $('<li>', {
+            html: $('<a>', {
+                href: '#',
+                text: i
+            })
+        }).appendTo(paginationList)
+    }
+
+    $('<li>', {
+        html: $('<a>', {
+            href: '#',
+            text: 'prev'
+        })
+    }).appendTo(paginationList);
+
+    return paginationList;
 }
 
 function changeTaskStatus(taskId, taskStatus, labelClass) {
