@@ -10,8 +10,6 @@ public interface TaskRepository {
 
     List<Task> getTaskByUser(Integer userId, Integer offset, Integer tasksPerPage);
 
-    //List<Task> getTaskByUserPagination(Integer userId, Integer offset, Integer tasksPerPage);
-
     List<Item> getItemByTask(Integer taskId);
 
     void addTask(Task task);

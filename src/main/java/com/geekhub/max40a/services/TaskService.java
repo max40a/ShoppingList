@@ -19,6 +19,4 @@ public interface TaskService {
     void changeStatusOfTask(Integer taskId, String status);
 
     Integer countAllTaskOfUser(Integer userId);
-
-    //List<Task> getTaskByUserPagination(Integer userId, Integer offset, Integer tasksPerPage);
 }

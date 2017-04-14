@@ -47,30 +47,6 @@ public class TaskRepositoryImpl implements TaskRepository {
         return tasks;
     }
 
-    /*public List<Task> getTaskByUserPagination(Integer userId, Integer offset, Integer tasksPerPage) {
-        String sql = "SELECT * FROM tasks WHERE user_id = " + userId + " ORDER BY tasks.id LIMIT " + offset + ", " + tasksPerPage;
-        List<Task> tasks = new ArrayList<>();
-
-        List<Map<String, Object>> rows = jdbcTemplate.queryForList(sql);
-
-        for (Map row : rows) {
-            Task task = new Task();
-
-            task.setId((Integer) row.get("id"));
-            task.setTitle((String) row.get("title"));
-            task.setUserId((Integer) row.get("user_id"));
-            task.setStatus(TaskStatus.valueOf((String) row.get("status")));
-
-            tasks.add(task);
-        }
-
-        for (Task task : tasks) {
-            task.setItems(getItemByTask(task.getId()));
-        }
-
-        return tasks;
-    }*/
-
     @Override
     public Integer countAllTaskOfUser(Integer userId) {
         String sql = "SELECT count(*) FROM tasks WHERE user_id = " + userId;

@@ -56,9 +56,4 @@ public class TaskServiceImpl implements TaskService {
     public Integer countAllTaskOfUser(Integer userId) {
         return taskRepository.countAllTaskOfUser(userId);
     }
-
-    /*@Override
-    public List<Task> getTaskByUserPagination(Integer userId, Integer offset, Integer tasksPerPage) {
-        return taskRepository.getTaskByUserPagination(userId, offset, tasksPerPage);
-    }*/
 }
