@@ -1,5 +1,6 @@
 package com.geekhub.max40a.controller;
 
+import com.geekhub.max40a.dto.TaskResponseDto;
 import com.geekhub.max40a.model.Item;
 import com.geekhub.max40a.model.Task;
 import com.geekhub.max40a.model.enums.TaskStatus;
@@ -14,6 +15,8 @@ import java.util.List;
 @RequestMapping("/host/tasks")
 public class TaskController {
 
+    private static Integer TASKS_PER_PAGE = 2;
+
     private TaskService taskService;
 
     @Autowired
@@ -22,8 +25,17 @@ public class TaskController {
     }
 
     @GetMapping(value = "/user/{userId}")
-    public List<Task> getUserTasks(@PathVariable Integer userId) {
-        return taskService.getTasksByUser(userId);
+    public TaskResponseDto getUserTasksDto(@PathVariable Integer userId) {
+        TaskResponseDto dto = new TaskResponseDto();
+
+        List<Task> tasks = taskService.getTasksByUser(userId);
+        Integer tasksCount = taskService.countAllTaskOfUser(userId);
+        Integer pageCount = (tasksCount % TASKS_PER_PAGE == 0) ? (tasksCount / TASKS_PER_PAGE) : (tasksCount / TASKS_PER_PAGE) + 1;
+
+        dto.setTaskList(tasks);
+        dto.setCountPage(pageCount);
+
+        return dto;
     }
 
     @GetMapping(value = "/{taskId}")
