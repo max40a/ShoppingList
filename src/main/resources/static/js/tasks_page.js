@@ -1,11 +1,11 @@
 var tempId = 1;
 
 function getAllTasks() {
-    $.get("/host/tasks/user/" + tempId, function (response) {
+    $.get("/host/tasks/user/" + tempId + '/' + 1, function (response) {
         var tasks = response.taskList;
-        var pageCount = response.countPage;
+        var totalPageCount = response.countPage;
 
-        fillTaskTable(tasks, pageCount);
+        fillTaskTable(tasks, totalPageCount);
 
         $.each(tasks, function (index, task) {
             $('#tasks').on("click", '#show_item_task_' + task.id, function () {
@@ -152,29 +152,40 @@ function generatePaginationLine(countTask) {
     });
 
     $('<li>', {
-        html: $('<a>', {
-            href: '#',
+        html: $('<button>', {
+            id: 'pagination_next',
+            class: 'btn btn-default',
             text: 'next'
         })
     }).appendTo(paginationList);
 
     for (var i = 1; i <= countTask; i++) {
         $('<li>', {
-            html: $('<a>', {
-                href: '#',
+            html: $('<button>', {
+                id: 'page_id_' + i,
+                class: 'btn btn-default',
+                onclick: 'getPage(' + i + ')',
                 text: i
             })
         }).appendTo(paginationList)
     }
 
     $('<li>', {
-        html: $('<a>', {
-            href: '#',
+        html: $('<button>', {
+            id: 'pagination_prev',
+            class: 'btn btn-default',
             text: 'prev'
         })
     }).appendTo(paginationList);
 
     return paginationList;
+}
+
+function getPage(pageNum) {
+    $.get("/host/tasks/user/" + tempId + '/' + pageNum, function () {
+        $('#tasks').empty();
+        redrawTaskTable(pageNum);
+    });
 }
 
 function changeTaskStatus(taskId, taskStatus, labelClass) {
@@ -280,10 +291,13 @@ function redrawItemsTable() {
     });
 }
 
-function redrawTaskTable() {
-    $.get("/host/tasks/user/" + tempId, function (tasks) {
+function redrawTaskTable(currentPage) {
+    $.get("/host/tasks/user/" + tempId + '/' + currentPage, function (response) {
         $('#tasks').empty();
-        fillTaskTable(tasks)
+
+        var tasks = response.taskList;
+        var totalPageCount = response.countPage;
+        fillTaskTable(tasks, totalPageCount);
     });
 }
 

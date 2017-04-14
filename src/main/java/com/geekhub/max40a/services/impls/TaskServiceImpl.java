@@ -21,8 +21,8 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public List<Task> getTasksByUser(Integer userId) {
-        return taskRepository.getTaskByUser(userId);
+    public List<Task> getTasksByUser(Integer userId, Integer offset, Integer tasksPerPage) {
+        return taskRepository.getTaskByUser(userId, offset, tasksPerPage);
     }
 
     @Override
@@ -51,4 +51,14 @@ public class TaskServiceImpl implements TaskService {
 
         taskRepository.changeStatusOfTask(taskId, TaskStatus.valueOf(changeableStatus));
     }
+
+    @Override
+    public Integer countAllTaskOfUser(Integer userId) {
+        return taskRepository.countAllTaskOfUser(userId);
+    }
+
+    /*@Override
+    public List<Task> getTaskByUserPagination(Integer userId, Integer offset, Integer tasksPerPage) {
+        return taskRepository.getTaskByUserPagination(userId, offset, tasksPerPage);
+    }*/
 }

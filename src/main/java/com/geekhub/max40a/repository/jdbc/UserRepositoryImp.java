@@ -16,12 +16,10 @@ import java.util.Map;
 public class UserRepositoryImp implements UserRepository {
 
     private JdbcTemplate jdbcTemplate;
-    private TaskRepository taskRepository;
 
     @Autowired
-    public UserRepositoryImp(DataSource dataSource, TaskRepository taskRepository) {
+    public UserRepositoryImp(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
-        this.taskRepository = taskRepository;
     }
 
     @Override
@@ -41,8 +39,6 @@ public class UserRepositoryImp implements UserRepository {
             users.add(user);
         }
 
-        users.forEach(this::findUserTasks);
-
         return users;
     }
 
@@ -50,7 +46,7 @@ public class UserRepositoryImp implements UserRepository {
     public User findById(Integer id) {
         String sql = "SELECT * FROM users WHERE id = ?";
 
-        User user = jdbcTemplate.queryForObject(sql, new Object[]{id}, (rs, rowNum) -> {
+        return jdbcTemplate.queryForObject(sql, new Object[]{id}, (rs, rowNum) -> {
             User rowedUser = new User();
             rowedUser.setId(rs.getInt("id"));
             rowedUser.setName(rs.getString("name"));
@@ -58,15 +54,6 @@ public class UserRepositoryImp implements UserRepository {
             rowedUser.setPassword(rs.getString("password"));
             return rowedUser;
         });
-
-        findUserTasks(user);
-
-        return user;
-    }
-
-    private User findUserTasks(User user) {
-        user.setTasks(taskRepository.getTaskByUser(user.getId()));
-        return user;
     }
 
     @Override

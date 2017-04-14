@@ -4,6 +4,8 @@ import com.geekhub.max40a.dto.TaskResponseDto;
 import com.geekhub.max40a.model.Item;
 import com.geekhub.max40a.model.Task;
 import com.geekhub.max40a.model.enums.TaskStatus;
+import com.geekhub.max40a.pagination.Page;
+import com.geekhub.max40a.pagination.PageRequest;
 import com.geekhub.max40a.services.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,18 +26,13 @@ public class TaskController {
         this.taskService = taskService;
     }
 
-    @GetMapping(value = "/user/{userId}")
-    public TaskResponseDto getUserTasksDto(@PathVariable Integer userId) {
-        TaskResponseDto dto = new TaskResponseDto();
-
-        List<Task> tasks = taskService.getTasksByUser(userId);
+    @GetMapping(value = "/user/{userId}/{currentPage}")
+    public TaskResponseDto getUserTasks(@PathVariable Integer userId, @PathVariable Integer currentPage) {
+        List<Task> tasks = taskService.getTasksByUser(userId, currentPage, TASKS_PER_PAGE);
         Integer tasksCount = taskService.countAllTaskOfUser(userId);
         Integer pageCount = (tasksCount % TASKS_PER_PAGE == 0) ? (tasksCount / TASKS_PER_PAGE) : (tasksCount / TASKS_PER_PAGE) + 1;
 
-        dto.setTaskList(tasks);
-        dto.setCountPage(pageCount);
-
-        return dto;
+        return new TaskResponseDto(tasks, pageCount);
     }
 
     @GetMapping(value = "/{taskId}")
