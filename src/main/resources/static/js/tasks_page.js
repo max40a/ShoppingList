@@ -1,8 +1,11 @@
 var tempId = 1;
 
 function getAllTasks() {
-    $.get("/host/tasks/user/" + tempId, function (tasks) {
-        fillTaskTable(tasks);
+    $.get("/host/tasks/user/" + tempId, function (response) {
+        var tasks = response.taskList;
+        var pageCount = response.countPage;
+
+        fillTaskTable(tasks, pageCount);
 
         $.each(tasks, function (index, task) {
             $('#tasks').on("click", '#show_item_task_' + task.id, function () {
@@ -29,7 +32,7 @@ function getAllTasks() {
     });
 }
 
-function fillTaskTable(tasks) {
+function fillTaskTable(tasks, pageCount) {
     $.each(tasks, function (index, task) {
         var countOfAllItemsInTask = task.items.length;
         var countOfUnfinishedItem = calculateUnfinishedItemsForTask(task);
@@ -133,13 +136,11 @@ function fillTaskTable(tasks) {
         }
     });
 
-    var countTasks = 6;
-
     $('#tasks').append(
         $('<tr>').append(
             $('<td>', {
                 colspan: '5',
-                html: generatePaginationLine(countTasks)
+                html: generatePaginationLine(pageCount)
             })
         )
     )
